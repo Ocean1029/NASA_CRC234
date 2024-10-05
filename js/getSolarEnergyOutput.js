@@ -62,17 +62,17 @@ async function getSolarEnergyOutput(longitude, latitude, startDate, endDate) {
     }
 }
 
-// Example usage
-const longitude = 121.5;
-const latitude = 25.0;
-const startDate = "20230101";  // Start date in the format YYYYMMDD
-const endDate = "20230131";    // End date in the format YYYYMMDD
+// // Example usage
+// const longitude = 121.5;
+// const latitude = 25.0;
+// const startDate = "20230101";  // Start date in the format YYYYMMDD
+// const endDate = "20230131";    // End date in the format YYYYMMDD
 
-// Call the function and display the results
-getSolarEnergyOutput(longitude, latitude, startDate, endDate)
-    .then(data => {
-        console.log("Solar Radiation Data:", data);  // Display the results in the console
-    })
-    .catch(error => {
-        console.error("Error:", error);  // Display any error messages
-    });
+// // Call the function and display the results
+// getSolarEnergyOutput(longitude, latitude, startDate, endDate)
+//     .then(data => {
+//         console.log("Solar Radiation Data:", data);  // Display the results in the console
+//     })
+//     .catch(error => {
+//         console.error("Error:", error);  // Display any error messages
+//     });
