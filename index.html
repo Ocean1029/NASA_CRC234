@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA 黑客松項目</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- 自訂樣式 -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>NASA 長期溫度數據地圖</h1>
+    </header>
+    <main>
+        <div id="map"></div>
+        <div id="data-display">
+            <canvas id="temperatureChart"></canvas>
+            <!-- canvas 元素用於繪製圖形，例如圖表 -->
+        </div>
+    </main>
+    <footer>
+        <p>© 2024 NASA 黑客松</p>
+    </footer>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 自訂腳本 -->
+    <script src="js/main.js"></script>
+</body>
+</html>

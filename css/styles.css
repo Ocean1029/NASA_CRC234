@@ -1,0 +1,52 @@
+/* 重置樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 頁面佈局 */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header, footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    flex: 1; 
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+#map {
+    flex: 2;
+    height: 100%;
+    border: 1px solid #ccc;
+    /* 置中 */
+    display: flex;
+    justify-content: center;
+}
+
+#data-display {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    background-color: #f9f9f9;
+}
+
+#temperatureChart {
+    width: 100%;
+    height: 100%;
+}
