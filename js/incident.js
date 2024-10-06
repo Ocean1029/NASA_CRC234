@@ -19,21 +19,46 @@ export function invokeIncident() {
 function mineDiscover() {
     if (!gameState.isMineDiscovered && Math.random() <= 0.7) {
         logMessage("Mine discovered! Would you permit license?", 'incident');
-
-        // 發放許可
-        if (gameState.mineLicense === 0) {  // no license
-            updateState({ support: gameState.support - 5 });
-            logMessage("You did not permit any license. Public support decreased by 5.", 'incident');
-        }
-        if (gameState.mineLicense === 1) {  // strict license
-            updateState({ support: gameState.support + 10, mineIncome: 3, fossilFee: 0.5 });
-            logMessage("Strict license issued. Public support increased by 10. Fossil fuel fee decreased.", 'incident');
-        }
-        if (gameState.mineLicense === 2) {  // loose license
-            updateState({ support: gameState.support + 10, mineIncome: 8, fossilFee: 0.1 });
-            logMessage("Loose license issued. Public support increased by 10. Fossil fuel fee greatly decreased.", 'incident');
-        }
-        updateState({ isMineDiscovered: true });
+        
+        swal({
+            icon: "info",
+            title: "Mine discovered!\nWould you permit license?",
+            text: "No license: social support -5.\n\nStrict license: social support +10, finance +3 every year, fuel fee become $0.5/100kW, but 3% possibility there will be a mine incident.\n\nLoose license: social support +10, finance +8 every year, fuel fee become $0.1/100kW, but 30% possibility there will be a mine incident.",
+            buttons:{
+                Btn: false,
+                A: {
+                    text: "No",
+                    value: 0,
+                    visible: true
+                },
+                B: {
+                    text: "Strict License",
+                    value: 1,
+                    visible: true
+                },
+                C: {
+                    text: "Loose License",
+                    value: 2, 
+                    visible: true
+                }
+            }
+        }).then((value) => {
+            // 發放許可
+            gameState.mineLicense = value;
+            if (gameState.mineLicense === 0) {  // no license
+                updateState({ support: gameState.support - 5 });
+                logMessage("You did not permit any license. Public support decreased by 5.", 'incident');
+            }
+            if (gameState.mineLicense === 1) {  // strict license
+                updateState({ support: gameState.support + 10, mineIncome: 3, fossilFee: 0.5 });
+                logMessage("Strict license issued. Public support increased by 10. Fossil fuel fee decreased.", 'incident');
+            }
+            if (gameState.mineLicense === 2) {  // loose license
+                updateState({ support: gameState.support + 10, mineIncome: 8, fossilFee: 0.1 });
+                logMessage("Loose license issued. Public support increased by 10. Fossil fuel fee greatly decreased.", 'incident');
+            }
+            updateState({ isMineDiscovered: true });
+        });
     }
 }
 
@@ -59,15 +84,37 @@ function mineIncident() {
 function tribeProtest() {
     if (!gameState.isTribeProtest && Math.random() <= 0.3) {
         logMessage("Tribe protest occurred!", 'incident');
-        if (gameState.tribeSelect === 1) {
-            updateState({ support: gameState.support - 10 });
-            logMessage("You did not respond to the tribe's concerns. Public support decreased by 10.", 'incident');
-        }
-        if (gameState.tribeSelect === 2) {
-            updateState({ support: gameState.support + 10, green: gameState.green - gameState.greenPower });
-            logMessage("You responded to the tribe's concerns. Public support increased by 10, but green energy output decreased.", 'incident');
-        }
-        updateState({ isTribeProtest: true });
+        swal({
+            icon: "info",
+            title: "Tribe residents protesting!\nWhat would you do?",
+            text: "Residents concern that their property will be damaged.\n\nContinue installation: support -10.\n\nCommunicate with residents: support +10 but the installation of green energy will be postponed by a round.",
+            buttons:{
+                Btn: false,
+                A: {
+                    text: "Continue Installation",
+                    value: 1,
+                    visible: true
+                },
+                B: {
+                    text: "Communicate",
+                    value: 2,
+                    visible: true
+                }
+            }
+        }).then((value) => {
+            // 發放許可
+            gameState.mineLicense = value;
+            if (gameState.tribeSelect === 1) {
+                updateState({ support: gameState.support - 10 });
+                logMessage("You did not respond to the tribe's concerns. Public support decreased by 10.", 'incident');
+            }
+            if (gameState.tribeSelect === 2) {
+                updateState({ support: gameState.support + 10, green: gameState.green - gameState.greenPower });
+                logMessage("You responded to the tribe's concerns. Public support increased by 10, but green energy output decreased.", 'incident');
+            }
+            updateState({ isTribeProtest: true });
+        });
+        
     }
 }
 
