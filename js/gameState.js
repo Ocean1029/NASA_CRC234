@@ -23,5 +23,8 @@ export const gameState = {
 
 // 更新遊戲狀態的函式
 export function updateState(newState) {
+    if(newState.finance !== undefined){
+        newState.finance = Math.round(newState.finance * 10) / 10;
+    }
     Object.assign(gameState, newState);
 }
