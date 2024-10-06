@@ -18,6 +18,7 @@ export const gameState = {
     issolarProtest: false,
     isMineDiscovered: false,
     isTribeProtest: false,
+    isIncidentHappend: false,
     mineLicense: 0,
     carbonFee: 0,
     tribeSelect: 0,
@@ -27,5 +28,8 @@ export const gameState = {
 
 // 更新遊戲狀態的函式
 export function updateState(newState) {
+    if(newState.finance !== undefined){
+        newState.finance = Math.round(newState.finance * 10) / 10;
+    }
     Object.assign(gameState, newState);
 }

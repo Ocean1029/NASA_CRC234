@@ -1,17 +1,17 @@
 /* 調整整體頁面排版，設定基礎樣式 */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #DAD7CD; /* 淺灰綠色背景 */
     margin: 0;
     padding: 0;
     text-align: center;
-    color: #333;
+    color: #344E41; /* 深墨綠色文字 */
 }
 
 /* 頁首樣式 */
 header {
-    background-color: #2c3e50;
-    color: white;
+    background-color: #3A5A40; /* 深綠色背景 */
+    color: #DAD7CD; /* 淺灰綠文字 */
     padding: 20px 0;
     margin-bottom: 20px;
 }
@@ -23,24 +23,24 @@ h1 {
 
 /* 調整主容器的 flex 佈局 */
 #main-container {
-    display: flex;          /* 使用 flex 佈局 */
-    justify-content: space-between; /* 讓左右區塊之間有間距 */
-    align-items: stretch; /* 讓子元素頂端對齊，避免 console 拉伸影響 dashBoard */
-    max-width: 1200px;       /* 限制主容器最大寬度 */
-    margin: 0 auto;          /* 水平居中 */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
-    gap: 30px;               /* 左右兩區塊之間的距離 */
+    gap: 30px;
 }
 
 /* 左側遊戲狀態區域：設置固定高度 */
 #game-container {
     flex: 1;
     height: 600px;
-    padding: 15px 40px;     /* 增加左右間距，讓按鈕寬度更大 */
-    background: #ffffff;
+    padding: 15px 40px;
+    background: #A3B18A; /* 使用淺綠色背景 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    text-align: left;        /* 文字靠左對齊 */
+    text-align: left;
 }
 
 /* 控制台標題樣式 */
@@ -48,6 +48,7 @@ h1 {
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 30px;
+    color: #344E41; /* 深墨綠色標題 */
 }
 
 /* 狀態區域樣式 */
@@ -58,58 +59,58 @@ h1 {
 .status-container p {
     font-size: 1.2em;
     margin: 15px 0;
+    color: #344E41; /* 深墨綠色文字 */
 }
 
 /* 調整按鈕樣式 */
-/* 將按鈕容器設置為 flex 排列，並改為垂直方向 */
 #button-container {
-    display: flex;          /* 使用 flex 排列 */
-    flex-direction: column; /* 垂直排列 */
-    align-items: left;    /* 子元素水平至左 */
-    margin: 20px 0;         /* 上下間距 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px 0;
 }
 
-/* 調整按鈕樣式，使其在垂直排列中更加顯眼 */
+/* 按鈕樣式 */
 .action-button {
     width: 100%;
     max-width: 350px;
-    background-color: #27ae60;
-    color: white;
+    background-color: #588157; /* 使用中度綠色背景 */
+    color: #DAD7CD; /* 淺灰綠文字 */
     border: none;
-    padding: 15px 40px;     /* 增加左右間距，讓按鈕寬度更大 */
-    margin: 10px 0;         /* 調整垂直間距 */
-    font-size: 1.2em;       /* 調整按鈕字體大小 */
+    padding: 15px 40px;
+    margin: 10px 0;
+    font-size: 1.2em;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-/* 調整 hover 和 active 狀態下的按鈕樣式 */
+/* 按鈕 hover 和 active 狀態樣式 */
 .action-button:hover {
-    background-color: #2ecc71;
+    background-color: #3A5A40; /* 深綠色 hover */
 }
 
 .action-button:active {
-    background-color: #1e8449;
+    background-color: #344E41; /* 更深的綠色 active */
 }
 
-/* 右側遊戲控制台樣式：允許內容高度變化 */
+/* 右側遊戲控制台樣式 */
 #game-console {
     flex: 2;
-    max-height: 600px;       /* 設置最大高度，超出時顯示滾動條 */
-    overflow-y: auto;        /* 當內容超出最大高度時，顯示滾動條 */
-    background-color: #3c8ea0;
+    max-height: 600px;
+    overflow-y: auto;
+    background-color: #98b594; /* 淺灰綠色背景 */
     border-radius: 8px;
-    padding: 15px 40px;     /* 增加左右間距，讓按鈕寬度更大 */
+    padding: 15px 40px;
     text-align: left;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;           /* 使用 flex 排版 */
-    flex-direction: column;  /* 讓內部內容垂直排列 */
+    display: flex;
+    flex-direction: column;
 }
 
 /* 控制台標題樣式 */
 #game-console h3 {
-    color: #ecf0f1;
+    color: #344E41; /* 深墨綠色 */
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 30px;
@@ -117,10 +118,10 @@ h1 {
 
 /* 控制台訊息樣式 */
 #console-log {
-    max-height: 550px;       /* 限制訊息顯示區域的最大高度 */
-    overflow-y: auto;        /* 當內容超出最大高度時顯示滾動條 */
+    max-height: 550px;
+    overflow-y: auto;
     padding: 10px;
-    background-color: #2c3e50; /* 控制台訊息區域背景色 */
+    background-color: #A3B18A; /* 使用淺綠色背景 */
 }
 
 /* 控制台內訊息樣式 */
@@ -130,35 +131,34 @@ h1 {
     border-radius: 5px;
     font-size: 0.9em;
     line-height: 1.4;
+    color: #344E41; /* 深墨綠色文字 */
 }
 
 /* 控制台訊息類型樣式 */
 .log-info {
-    background-color: #56797e;
-    color: #ecf0f1;
+    background-color: #94af66; /* 中度綠色 */
+    color: #DAD7CD; /* 淺灰綠文字 */
 }
 
 .log-warning {
-    background-color: #f39c12;
+    background-color: #e9c46a; /* 黃色警告 */
     color: #fff;
 }
 
 .log-incident {
-    background-color: #e35c12;
+    background-color: #f7c683; /* 橙紅色事件 */
     color: #fff;
 }
 
 .log-loss {
-    background-color: #e74c3c;
+    background-color: #e8a67d; /* 紅色損失 */
     color: #fff;
 }
 
 .log-success {
-    background-color: #27ae60;
+    background-color: #6ad292d4; /* 綠色成功 */
     color: #fff;
 }
-
-
 
 /* 選擇按鈕樣式 */
 .choice-container {
@@ -178,37 +178,37 @@ h1 {
 }
 
 .choice-button.agree {
-    background-color: #27ae60;
-    color: #fff;
+    background-color: #588157; /* 中度綠色 */
+    color: #DAD7CD;
 }
 
 .choice-button.agree:hover {
-    background-color: #2ecc71;
+    background-color: #3A5A40; /* 深綠色 */
 }
 
 .choice-button.agree:active {
-    background-color: #1e8449;
+    background-color: #344E41; /* 更深的綠色 */
 }
 
 .choice-button.reject {
-    background-color: #e74c3c;
+    background-color: #e76f51; /* 橙紅色拒絕按鈕 */
     color: #fff;
 }
 
 .choice-button.reject:hover {
-    background-color: #c0392b;
+    background-color: #d35400; /* hover 狀態橙色 */
 }
 
 .choice-button.reject:active {
-    background-color: #992d22;
+    background-color: #b03a2e; /* active 狀態更深的橙紅色 */
 }
 
 footer {
-    position: relative; /* 改為相對定位 */
+    position: relative;
     bottom: 0;
     width: 100%;
-    background-color: #2c3e50;
-    color: white;
+    background-color: #3A5A40; /* 深綠色背景 */
+    color: #DAD7CD; /* 淺灰綠文字 */
     text-align: center;
     padding: 10px 0;
     margin-top: 30px;

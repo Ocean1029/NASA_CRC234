@@ -1,13 +1,14 @@
 // incident.js
 import { logMessage } from './gameConsole.js'; // 引入 logMessage , 'incident'函數
 import { gameState, updateState } from './gameState.js'; // 引入 gameState 物件和 updateState 函式
+import { updateInfo } from './gameUI.js';
 
 // 執行所有事件的調用函式
 export function invokeIncident() {
-    mineDiscover();
     mineIncident();
-    tribeProtest();
+    mineDiscover();
     tribeIncident();
+    tribeProtest();
     chargeCarbonFee();
     greenRevo();
     oilCrisis();
@@ -17,6 +18,7 @@ export function invokeIncident() {
 }
 
 function mineDiscover() {
+    if(gameState.isIncidentHappend) return;
     if (!gameState.isMineDiscovered && Math.random() <= 0.7) {
         logMessage("Mine discovered! Would you permit license?", 'incident');
         
@@ -44,7 +46,8 @@ function mineDiscover() {
             }
         }).then((value) => {
             // 發放許可
-            gameState.mineLicense = value;
+            updateState({ mineLicense: value });
+            console.log("pro-support: " + gameState.support);
             if (gameState.mineLicense === 0) {  // no license
                 updateState({ support: gameState.support - 5 });
                 logMessage("You did not permit any license. Public support decreased by 5.", 'incident');
@@ -57,31 +60,59 @@ function mineDiscover() {
                 updateState({ support: gameState.support + 10, mineIncome: 8, fossilFee: 0.1 });
                 logMessage("Loose license issued. Public support increased by 10. Fossil fuel fee greatly decreased.", 'incident');
             }
+            console.log("post-support: " + gameState.support);
             updateState({ isMineDiscovered: true });
+            updateInfo();
         });
+        updateState({ isIncidentHappend: true });
     }
 }
 
 function mineIncident() {
-    if (!gameState.isMineDiscovered || gameState.mineLicense === 0) return;
+    if (gameState.isIncidentHappend || !gameState.isMineDiscovered || gameState.mineLicense === 0) return;
 
     if ((gameState.mineLicense === 1 && Math.random() <= 0.03) || (gameState.mineLicense === 2 && Math.random() <= 0.3)) {
         logMessage("Mine Incident Occurred! Public support decreased by 25.", 'incident');
         updateState({ support: gameState.support - 25 });
-
-        if (gameState.mineLicense === 1 || gameState.mineLicense === 2) {
-            updateState({ support: gameState.support - 5 });
-            logMessage("Public support decreased further by 5 due to the incident.", 'incident');
-        }
-
-        if (gameState.mineLicense === 0) {
-            updateState({ support: gameState.support + 5, mineIncome: 0, fossilFee: 1 });
-            logMessage("Public support increased by 5. Mining operations suspended.", 'incident');
-        }
+        swal({
+            icon: "warning",
+            title: "Mine Incident Occurred!\nContinue to permit license?",
+            text: "",
+            buttons:{
+                Btn: false,
+                A: {
+                    text: "No",
+                    value: 0,
+                    visible: true
+                },
+                B: {
+                    text: "Keep issue license",
+                    value: 1,
+                    visible: true
+                },
+            }
+        }).then((value) => {
+            // 發放許可
+            if(gameState.mineLicense === 2 && value === 1) value = 2;
+            updateState({ mineLicense: value });
+            if (gameState.mineLicense === 1 || gameState.mineLicense === 2) {
+                updateState({ support: gameState.support - 5 });
+                logMessage("Public support decreased further by 5 due to the incident.", 'incident');
+            }
+    
+            if (gameState.mineLicense === 0) {
+                updateState({ support: gameState.support + 5, mineIncome: 0, fossilFee: 1 });
+                logMessage("Public support increased by 5. Mining operations suspended.", 'incident');
+            }
+            updateState({ isMineDiscovered: true });
+            updateInfo();
+        });
+        updateState({ isIncidentHappend: true });
     }
 }
 
 function tribeProtest() {
+    if(gameState.isIncidentHappend) return;
     if (!gameState.isTribeProtest && Math.random() <= 0.3) {
         logMessage("Tribe protest occurred!", 'incident');
         swal({
@@ -103,7 +134,7 @@ function tribeProtest() {
             }
         }).then((value) => {
             // 發放許可
-            gameState.mineLicense = value;
+            updateState({ tribeSelect: value });
             if (gameState.tribeSelect === 1) {
                 updateState({ support: gameState.support - 10 });
                 logMessage("You did not respond to the tribe's concerns. Public support decreased by 10.", 'incident');
@@ -113,20 +144,24 @@ function tribeProtest() {
                 logMessage("You responded to the tribe's concerns. Public support increased by 10, but green energy output decreased.", 'incident');
             }
             updateState({ isTribeProtest: true });
+            updateInfo();
         });
-        
+        updateState({ isIncidentHappend: true });
     }
 }
 
 function tribeIncident() {
-    if (!gameState.isTribeProtest) return;
+    if (gameState.isIncidentHappend || !gameState.isTribeProtest) return;
     if (gameState.tribeSelect === 1 && Math.random() <= 0.3) {
         updateState({ green: gameState.green - gameState.greenPower });
         logMessage("Tribe protest escalated. Green energy output decreased.", 'incident');
+        updateState({ isIncidentHappend: true });
+        updateInfo();
     }
-    if (gameState.tribeSelect === 2) {
+    else if (gameState.tribeSelect === 2) {
         updateState({ green: gameState.green + gameState.greenPower, tribeSelect: 0 });
         logMessage("Tribe incident resolved. Green energy output restored.", 'incident');
+        updateInfo();
     }
 }
 
@@ -142,43 +177,58 @@ function chargeCarbonFee() {
 }
 
 function greenRevo() {
+    if(gameState.isIncidentHappend) return;
     if (gameState.round >= 5 && gameState.greenPower <= 200) {
         updateState({ greenPower: gameState.greenPower * 1.5 });
         logMessage("Green energy revolution occurred! Green energy output increased significantly.", 'incident');
+        
+        updateState({ isIncidentHappend: true });
     }
 }
 
 function oilCrisis() {
+    if(gameState.isIncidentHappend) return;
     if (gameState.round >= 8 && gameState.fossilFee === 1 && Math.random() <= 0.5) {
         updateState({ fossilFee: 2, support: gameState.support - 10 });
         logMessage("[News] Oil crisis breakout! Fossil fuel fee increased to $2/300kw.", 'incident');
         logMessage("Public support decreased by 10 due to the crisis.", 'incident');
+        
+        updateState({ isIncidentHappend: true });
     }
 }
 
 function carbonCreditExchange() {
+    if(gameState.isIncidentHappend) return;
     if (gameState.round >= 8 && Math.random() <= 0.5) {
         updateState({ isCarbonCreditOpened: true });
         logMessage("[News] Carbon Credit Exchange Opened! Every 100kw excessive green energy could be sold for $10.", 'incident');
+        
+        updateState({ isIncidentHappend: true });
     }
 
     if (gameState.isCarbonCreditOpened) {
-        const creditIncome = (gameState.green + gameState.fossil - 4000) * 10 >= 0 ? (gameState.green + gameState.fossil - 4000) * 10 : 0;
+        const creditIncome = (gameState.green + gameState.fossil - 4000) >= 0 ? (gameState.green + gameState.fossil - 4000) /100 * 10 : 0;
         updateState({ finance: gameState.finance + creditIncome });
         logMessage(`Carbon credits sold: $${creditIncome}. Finance increased.`, 'incident');
     }
 }
 
 function airProtest() {
+    if(gameState.isIncidentHappend) return;
     if (gameState.round <= 4 && !gameState.isairProtest && Math.random() <= 0.6) {
         updateState({ support: gameState.support - 15, isairProtest: true });
         logMessage("[News] Residents protest against air pollution! Public support decreases by 15.", 'incident');
+        
+        updateState({ isIncidentHappend: true });
     }
 }
 
 function solarProtest() {
+    if(gameState.isIncidentHappend) return;
     if (gameState.round <= 4 && !gameState.issolarProtest && Math.random() <= 0.6) {
         updateState({ support: gameState.support - 15, issolarProtest: true });
         logMessage("[News] Fishing industry raises concerns that solar panels might occupy fishing pond land. Public support decreases by 15.", 'incident');
+        
+        updateState({ isIncidentHappend: true });
     }
 }
