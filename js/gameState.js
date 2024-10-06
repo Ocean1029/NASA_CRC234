@@ -16,6 +16,7 @@ export const gameState = {
     issolarProtest: false,
     isMineDiscovered: false,
     isTribeProtest: false,
+    isIncidentHappend: false,
     mineLicense: 0,
     carbonFee: 0,
     tribeSelect: 0,

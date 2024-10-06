@@ -58,13 +58,14 @@ function nextRound() {
         finance: newFinance,
         round: gameState.round + 1,
     });
-
+    updateInfo();
     if (checkLoseCondition()) {
         logMessage("Oops! You've lost the game! Better luck next time.", 'loss');
     } else if (checkWinCondition()) {
         logMessage("Congratulations! You've won the game! Let's learn something about sustainable energy.", 'success');
         window.location.href = "learn.html";
     } else {
+        updateState({ isIncidentHappend: false });
         invokeIncident();
         logMessage(`Starting round ${gameState.round}. Finance is now $${gameState.finance}.`, 'success');
         updateInfo();
