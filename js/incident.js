@@ -4,10 +4,10 @@ import { gameState, updateState } from './gameState.js'; // 引入 gameState 物
 
 // 執行所有事件的調用函式
 export function invokeIncident() {
-    mineDiscover();
     mineIncident();
-    tribeProtest();
+    mineDiscover();
     tribeIncident();
+    tribeProtest();
     chargeCarbonFee();
     greenRevo();
     oilCrisis();
@@ -44,7 +44,7 @@ function mineDiscover() {
             }
         }).then((value) => {
             // 發放許可
-            gameState.mineLicense = value;
+            updateState({ mineLicense: value });
             if (gameState.mineLicense === 0) {  // no license
                 updateState({ support: gameState.support - 5 });
                 logMessage("You did not permit any license. Public support decreased by 5.", 'incident');
@@ -103,7 +103,7 @@ function tribeProtest() {
             }
         }).then((value) => {
             // 發放許可
-            gameState.mineLicense = value;
+            updateState({ tribeSelect: value });
             if (gameState.tribeSelect === 1) {
                 updateState({ support: gameState.support - 10 });
                 logMessage("You did not respond to the tribe's concerns. Public support decreased by 10.", 'incident');
