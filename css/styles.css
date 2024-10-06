@@ -34,7 +34,7 @@ h1 {
 
 /* 左側遊戲狀態區域：設置固定高度 */
 #game-container {
-    width: 30%;              /* 左側寬度 */
+    flex: 1;
     height: 600px;
     padding: 15px 40px;     /* 增加左右間距，讓按鈕寬度更大 */
     background: #ffffff;
@@ -95,7 +95,7 @@ h1 {
 
 /* 右側遊戲控制台樣式：允許內容高度變化 */
 #game-console {
-    width: 60%;              /* 右側控制台寬度 */
+    flex: 2;
     max-height: 600px;       /* 設置最大高度，超出時顯示滾動條 */
     overflow-y: auto;        /* 當內容超出最大高度時，顯示滾動條 */
     background-color: #3c8ea0;
