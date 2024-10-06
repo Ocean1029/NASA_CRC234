@@ -35,7 +35,7 @@ h1 {
 /* 左側遊戲狀態區域：設置固定高度 */
 #game-container {
     flex: 1;
-    height: 600px;
+    height: 700px;
     padding: 15px 40px;
     background: #A3B18A; /* 使用淺綠色背景 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -97,7 +97,7 @@ h1 {
 /* 右側遊戲控制台樣式 */
 #game-console {
     flex: 2;
-    max-height: 600px;
+    max-height: 700px;
     overflow-y: auto;
     background-color: #98b594; /* 淺灰綠色背景 */
     border-radius: 8px;
@@ -118,7 +118,7 @@ h1 {
 
 /* 控制台訊息樣式 */
 #console-log {
-    max-height: 550px;
+    max-height: 700px;
     overflow-y: auto;
     padding: 10px;
     background-color: #A3B18A; /* 使用淺綠色背景 */
