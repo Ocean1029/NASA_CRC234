@@ -14,37 +14,39 @@
         <p>This game lets you manage energy policies to balance environmental impact, economy, and public support. Make decisions and see how they influence the world!</p>
     </header>
 
-    <!-- 遊戲主容器 -->
-    <div id="game-container">
-        <!-- 狀態顯示區 -->
-        <div class="status-container">
-            <p>Round: <span id="round">1</span></p>
-            <p>Finance: $<span id="finance">1000000</span></p>
-            <p>Green Energy Output: <span id="green">0</span> kW</p>
-            <p>Fossil Energy Output: <span id="fossil">0</span> kW</p>
-            <p>Total Energy Output: <span id="elec-sum">0</span>/4000 kW</p>
-            <p>Public Support: <span id="support">50%</span></p>
-            <p>Number of Fossil Facilities: <span id="fossil-count">0</span></p>
-        </div>
+    <!-- 遊戲主容器，包含遊戲狀態和控制台 -->
+    <div id="main-container">
+        <!-- 遊戲主內容區域 -->
+        <div id="game-container">
+            <!-- 狀態顯示區 -->
+            <h3> Dashboard</h3>
+            <div class="status-container">
+                <p>Round: <span id="round">1</span></p>
+                <p>Finance: $<span id="finance">100</span></p>
+                <p>Green Energy Output: <span id="green">0</span> kW</p>
+                <p>Fossil Energy Output: <span id="fossil">0</span> kW</p>
+                <p>Total Energy Output: <span id="elec-sum">0</span>/4000 kW</p>
+                <p>Public Support: <span id="support">100%</span></p>
+                <p>Number of Fossil Facilities: <span id="fossil-count">0</span></p>
+            </div>
 
-        <!-- 操作按鈕區 -->
-        <div id="button-container">
-            <button class="action-button" id="build-green">Build Green Energy Facility</button>
-            <button class="action-button" id="build-fossil">Build Fossil Energy Facility</button>
-            <button class="action-button" id="remove-fossil">Remove Fossil Energy Facility</button>
+            <!-- 操作按鈕區 -->
+            <div id="button-container">
+                <button class="action-button" id="build-green">Build Green Energy Facility</button>
+                <button class="action-button" id="build-fossil">Build Fossil Energy Facility</button>
+                <button class="action-button" id="remove-fossil">Remove Fossil Energy Facility</button>
+            </div>
         </div>
 
         <!-- 遊戲控制台，用於顯示訊息 -->
         <div id="game-console">
             <h3>Game Console</h3>
             <div id="console-log">
+                <p class="log-info">Welcome to the Green Energy Policy Simulation Game!</p>
             </div>
         </div>
-
-        <p id="result"></p>
     </div>
 
-    <!-- 頁面底部 -->
     <footer>
         <p>© 2024 Green Energy Simulation - NASA Hackathon Project</p>
     </footer>

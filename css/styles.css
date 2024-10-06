@@ -1,3 +1,4 @@
+/* 調整整體頁面排版，設定基礎樣式 */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -7,6 +8,7 @@ body {
     color: #333;
 }
 
+/* 頁首樣式 */
 header {
     background-color: #2c3e50;
     color: white;
@@ -19,84 +21,109 @@ h1 {
     font-size: 2em;
 }
 
+/* 調整主容器的 flex 佈局 */
+#main-container {
+    display: flex;          /* 使用 flex 佈局 */
+    justify-content: space-between; /* 讓左右區塊之間有間距 */
+    align-items: stretch; /* 讓子元素頂端對齊，避免 console 拉伸影響 dashBoard */
+    max-width: 1200px;       /* 限制主容器最大寬度 */
+    margin: 0 auto;          /* 水平居中 */
+    padding: 0 20px;
+    gap: 30px;               /* 左右兩區塊之間的距離 */
+}
+
+/* 左側遊戲狀態區域：設置固定高度 */
 #game-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 30%;              /* 左側寬度 */
+    height: 600px;
+    padding: 15px 40px;     /* 增加左右間距，讓按鈕寬度更大 */
     background: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    text-align: left;        /* 文字靠左對齊 */
 }
 
+/* 控制台標題樣式 */
+#game-container h3 {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* 狀態區域樣式 */
 .status-container {
-    text-align: left;
     margin-bottom: 20px;
 }
 
 .status-container p {
     font-size: 1.2em;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
+/* 調整按鈕樣式 */
+/* 將按鈕容器設置為 flex 排列，並改為垂直方向 */
 #button-container {
-    margin: 20px 0;
+    display: flex;          /* 使用 flex 排列 */
+    flex-direction: column; /* 垂直排列 */
+    align-items: left;    /* 子元素水平至左 */
+    margin: 20px 0;         /* 上下間距 */
 }
 
+/* 調整按鈕樣式，使其在垂直排列中更加顯眼 */
 .action-button {
+    width: 100%;
+    max-width: 350px;
     background-color: #27ae60;
     color: white;
     border: none;
-    padding: 15px 20px;
-    margin: 10px;
-    font-size: 1em;
+    padding: 15px 40px;     /* 增加左右間距，讓按鈕寬度更大 */
+    margin: 10px 0;         /* 調整垂直間距 */
+    font-size: 1.2em;       /* 調整按鈕字體大小 */
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
+/* 調整 hover 和 active 狀態下的按鈕樣式 */
 .action-button:hover {
     background-color: #2ecc71;
 }
 
-footer {
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-    margin-top: 30px;
-    padding: 10px 0;
-    background-color: #2c3e50;
-    color: white;
+.action-button:active {
+    background-color: #1e8449;
 }
 
-footer p {
-    margin: 0;
-}
-
-/* 遊戲控制台樣式 */
+/* 右側遊戲控制台樣式：允許內容高度變化 */
 #game-console {
-    width: 100%;
-    max-height: 300px;
-    overflow-y: auto;
+    width: 60%;              /* 右側控制台寬度 */
+    max-height: 600px;       /* 設置最大高度，超出時顯示滾動條 */
+    overflow-y: auto;        /* 當內容超出最大高度時，顯示滾動條 */
     background-color: #3c8ea0;
     border-radius: 8px;
-    padding: 15px;
-    margin-top: 20px;
+    padding: 15px 40px;     /* 增加左右間距，讓按鈕寬度更大 */
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;           /* 使用 flex 排版 */
+    flex-direction: column;  /* 讓內部內容垂直排列 */
 }
 
+/* 控制台標題樣式 */
 #game-console h3 {
     color: #ecf0f1;
     font-size: 1.5em;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 /* 控制台訊息樣式 */
 #console-log {
-    max-height: 250px;
-    overflow-y: auto;
+    max-height: 550px;       /* 限制訊息顯示區域的最大高度 */
+    overflow-y: auto;        /* 當內容超出最大高度時顯示滾動條 */
     padding: 10px;
+    background-color: #2c3e50; /* 控制台訊息區域背景色 */
 }
 
+/* 控制台內訊息樣式 */
 #console-log p {
     padding: 8px 15px;
     margin-bottom: 5px;
@@ -107,7 +134,7 @@ footer p {
 
 /* 控制台訊息類型樣式 */
 .log-info {
-    background-color: #34495e;
+    background-color: #56797e;
     color: #ecf0f1;
 }
 
@@ -129,4 +156,60 @@ footer p {
 .log-success {
     background-color: #27ae60;
     color: #fff;
+}
+
+
+
+/* 選擇按鈕樣式 */
+.choice-container {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.choice-button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.choice-button.agree {
+    background-color: #27ae60;
+    color: #fff;
+}
+
+.choice-button.agree:hover {
+    background-color: #2ecc71;
+}
+
+.choice-button.agree:active {
+    background-color: #1e8449;
+}
+
+.choice-button.reject {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+.choice-button.reject:hover {
+    background-color: #c0392b;
+}
+
+.choice-button.reject:active {
+    background-color: #992d22;
+}
+
+footer {
+    position: relative; /* 改為相對定位 */
+    bottom: 0;
+    width: 100%;
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 30px;
 }
