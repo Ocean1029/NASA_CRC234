@@ -8,10 +8,15 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- 頁面標題與遊戲介紹 -->
     <header>
         <h1>Green Energy Policy Simulation Game</h1>
+        <p>This game lets you manage energy policies to balance environmental impact, economy, and public support. Make decisions and see how they influence the world!</p>
     </header>
+
+    <!-- 遊戲主容器 -->
     <div id="game-container">
+        <!-- 狀態顯示區 -->
         <div class="status-container">
             <p>Round: <span id="round">1</span></p>
             <p>Finance: $<span id="finance">1000000</span></p>
@@ -21,17 +26,36 @@
             <p>Public Support: <span id="support">50%</span></p>
             <p>Number of Fossil Facilities: <span id="fossil-count">0</span></p>
         </div>
+
+        <!-- 操作按鈕區 -->
         <div id="button-container">
             <button class="action-button" id="build-green">Build Green Energy Facility</button>
             <button class="action-button" id="build-fossil">Build Fossil Energy Facility</button>
             <button class="action-button" id="remove-fossil">Remove Fossil Energy Facility</button>
         </div>
+
+        <!-- 遊戲控制台，用於顯示訊息 -->
+        <div id="game-console">
+            <h3>Game Console</h3>
+            <div id="console-log">
+                <p>Welcome to the Green Energy Policy Simulation Game!</p>
+            </div>
+        </div>
+
         <p id="result"></p>
     </div>
+
+    <!-- 頁面底部 -->
     <footer>
-        <p>© 2024 NASA Hackathon Project</p>
+        <p>© 2024 Green Energy Simulation - NASA Hackathon Project</p>
     </footer>
-    <script src="js/main.js"></script>
-    <script src="js/incident.js"></script>
+
+    <!-- 引入模組腳本 -->
+    <script src="js/gameState.js" type="module"></script>
+    <script src="js/gameConsole.js" type="module"></script>
+    <script src="js/gameActions.js" type="module"></script>
+    <script src="js/gameUI.js" type="module"></script>
+    <script src="js/incident.js" type="module"></script>
+    <script src="js/main.js" type="module"></script>
 </body>
 </html>

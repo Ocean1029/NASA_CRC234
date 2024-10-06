@@ -8,8 +8,6 @@
  * @returns {Promise<object>} - Returns a Promise containing daily solar radiation data.
  */
 
-
-
 async function getSolarEnergyOutput(longitude, latitude, startDate, endDate) {
     // Define the base URL for NASA POWER API
     const baseUrl = "https://power.larc.nasa.gov/api/temporal/daily/point";
