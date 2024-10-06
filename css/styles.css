@@ -34,7 +34,7 @@ h1 {
 
 /* 左側遊戲狀態區域：設置固定高度 */
 #game-container {
-    flex: 1;
+    flex: 2;
     height: 700px;
     padding: 15px 40px;
     background: #A3B18A; /* 使用淺綠色背景 */
@@ -96,7 +96,7 @@ h1 {
 
 /* 右側遊戲控制台樣式 */
 #game-console {
-    flex: 2;
+    flex: 3;
     max-height: 700px;
     overflow-y: auto;
     background-color: #98b594; /* 淺灰綠色背景 */
