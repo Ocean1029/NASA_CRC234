@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,13 @@
     <title>Green Energy Policy Simulation</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
     <!-- 頁面標題與遊戲介紹 -->
     <header>
         <h1>Green Energy Policy Simulation Game</h1>
-        <p>This game lets you manage energy policies to balance environmental impact, economy, and public support. Make decisions and see how they influence the world!</p>
+        <p>This game lets you manage energy policies to balance environmental impact, economy, and public support. Make
+            decisions and see how they influence the world!</p>
     </header>
 
     <!-- 遊戲主容器，包含遊戲狀態和控制台 -->
@@ -23,8 +26,10 @@
             <div class="status-container">
                 <p>Round: <span id="round">1</span></p>
                 <p>Finance: $<span id="finance">100</span></p>
-                <p>Green Energy Output: <span id="green">0</span> kW</p>
-                <p>Fossil Energy Output: <span id="fossil">0</span> kW</p>
+                <p>Green Installed Capacity: <span id="green_installed_capacity">0</span> kW</p>
+                <p>Fossil Installed Capacity: <span id="fossil_installed_capacity">0</span> kW</p>
+                <p>Green Electricity Production: <span id="green_electricity_production">0</span> kWh</p>
+                <p>Fossil Electricity Production: <span id="fossil_electricity_production">0</span> kWh</p>
                 <p>Total Energy Output: <span id="elec-sum">0</span>/4000 kW</p>
                 <p>Public Support: <span id="support">100%</span></p>
                 <p>Number of Fossil Facilities: <span id="fossil-count">0</span></p>
@@ -59,4 +64,5 @@
     <script src="js/incident.js" type="module"></script>
     <script src="js/main.js" type="module"></script>
 </body>
+
 </html>

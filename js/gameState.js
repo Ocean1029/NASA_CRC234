@@ -4,8 +4,10 @@
 export const gameState = {
     round: 1,
     finance: 100,
-    fossil: 3900,
-    green: 100,
+    fossil_installed_capacity: 3900,
+    green_installed_capacity: 100,
+    fossil_electricity_production: 3900 * 24,
+    green_electricity_production: 0,
     support: 100,
     fossilCount: 13,
     mineIncome: 0,
@@ -20,6 +22,8 @@ export const gameState = {
     mineLicense: 0,
     carbonFee: 0,
     tribeSelect: 0,
+    solar_data: -1,
+    randomValue: 250
 };
 
 // 更新遊戲狀態的函式

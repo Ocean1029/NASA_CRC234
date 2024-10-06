@@ -8,11 +8,11 @@
  * @returns {Promise<object>} - Returns a Promise containing daily solar radiation data.
  */
 
-async function getSolarEnergyOutput(longitude, latitude, startDate, endDate) {
+export async function getSolarEnergyOutput(longitude, latitude, startDate, endDate) {
     // Define the base URL for NASA POWER API
     const baseUrl = "https://power.larc.nasa.gov/api/temporal/daily/point";
 
-    const fetch = require("node-fetch"); // 如果可以直接fetch就刪除這行
+    // const fetch = require("node-fetch"); // 如果可以直接fetch就刪除這行
 
     // Set up query parameters
     const params = new URLSearchParams({
@@ -39,20 +39,23 @@ async function getSolarEnergyOutput(longitude, latitude, startDate, endDate) {
 
         const solarRadiation = data.properties.parameter.ALLSKY_SFC_SW_DWN;
 
-        // const results = Object.entries(solarRadiation).map(([date, value]) => ({
-        //     date,
-        //     radiation: value
-        // }));
-
-
         const efficiency = 0.2
 
-        let totalEnergyOutputPerM2 = 0; // 總發電量（kWh）
-        for (const value of Object.values(solarRadiation)) {
-            const dailyEnergyOutput = value * efficiency; // 每日發電量
-            totalEnergyOutputPerM2 += dailyEnergyOutput; // 累加到總發電量
-        }
-        return totalEnergyOutputPerM2;
+        const results = Object.entries(solarRadiation).map(([date, value]) => ({
+            date,
+            radiation: value,
+            energy: value * efficiency
+        }));
+
+        const yearlySum = results.reduce((acc, obj) => {
+            const year = obj.date.substring(0, 4); // 取出年份（前四個字元）
+            acc[year] = (acc[year] || 0) + obj.energy; // 將相同年份的輻射量累加
+            return acc;
+        }, {});
+
+        const energySumArray = Object.values(yearlySum);
+
+        return energySumArray;
 
     } catch (error) {
         console.error("Failed to retrieve data:", error);
@@ -63,8 +66,8 @@ async function getSolarEnergyOutput(longitude, latitude, startDate, endDate) {
 // // Example usage
 // const longitude = 121.5;
 // const latitude = 25.0;
-// const startDate = "20230101";  // Start date in the format YYYYMMDD
-// const endDate = "20230131";    // End date in the format YYYYMMDD
+// const startDate = "2000";  // Start date in the format YYYY
+// const endDate = "2022";    // End date in the format YYYY
 
 // // Call the function and display the results
 // getSolarEnergyOutput(longitude, latitude, startDate, endDate)
