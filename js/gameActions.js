@@ -30,7 +30,7 @@ export function buildFossil() {
         });
         logMessage(`Built a fossil energy facility. Fossil Energy Output is now ${gameState.fossil} kW. Fossil facilities: ${gameState.fossilCount}.`);
     } else {
-        logMessage("Insufficient funds to build a fossil energy facility!");
+        logMessage("Insufficient funds to build a fossil energy facility!", 'loss');
     }
     nextRound();
 }
@@ -46,7 +46,7 @@ export function removeFossil() {
         });
         logMessage(`Removed a fossil energy facility. Fossil Energy Output is now ${gameState.fossil} kW. Fossil facilities: ${gameState.fossilCount}.`);
     } else {
-        logMessage("No fossil energy facilities left to remove!");
+        logMessage("No fossil energy facilities left to remove!", 'loss');
     }
     nextRound();
 }
@@ -60,13 +60,13 @@ function nextRound() {
     });
 
     if (checkLoseCondition()) {
-        logMessage("Oops! You've lost the game! Better luck next time.");
+        logMessage("Oops! You've lost the game! Better luck next time.", 'loss');
     } else if (checkWinCondition()) {
-        logMessage("Congratulations! You've won the game! Let's learn something about sustainable energy.");
+        logMessage("Congratulations! You've won the game! Let's learn something about sustainable energy.", 'success');
         window.location.href = "learn.html";
     } else {
         invokeIncident();
-        logMessage(`Starting round ${gameState.round}. Finance is now $${gameState.finance}.`);
+        logMessage(`Starting round ${gameState.round}. Finance is now $${gameState.finance}.`, 'success');
         updateInfo();
     }
 }

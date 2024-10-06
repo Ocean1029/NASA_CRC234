@@ -26,7 +26,7 @@ function initGame() {
         tribeSelect: 0,
     });
     updateInfo();
-    logMessage("Welcome to the Green Energy Policy Simulation Game!");
+    logMessage("Welcome to the Green Energy Policy Simulation Game!", 'success');
 }
 
 // 啟動遊戲
