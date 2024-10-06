@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASA 黑客松項目</title>
+    <title>Green Energy Policy Simulation</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
-
 <body>
     <header>
-        <h1>綠能政策模擬遊戲</h1>
+        <h1>Green Energy Policy Simulation Game</h1>
     </header>
     <div id="game-container">
-        <p>回合：<span id="round"></span></p>
-        <p>財務狀況：<span id="finance"></span></p>
-        <p>綠能發電量：<span id="green"></span> kw</p>
-        <p>石化發電量：<span id="fossil"></span> kw</p>
-        <p>目前發電量：<span id="elec-sum"></span>/4000 kw</p>
-        <p>社會支持度：<span id="support"></span></p>
-        <p>石化設施數量：<span id="fossil-count"></span></p>
+        <div class="status-container">
+            <p>Round: <span id="round">1</span></p>
+            <p>Finance: $<span id="finance">1000000</span></p>
+            <p>Green Energy Output: <span id="green">0</span> kW</p>
+            <p>Fossil Energy Output: <span id="fossil">0</span> kW</p>
+            <p>Total Energy Output: <span id="elec-sum">0</span>/4000 kW</p>
+            <p>Public Support: <span id="support">50%</span></p>
+            <p>Number of Fossil Facilities: <span id="fossil-count">0</span></p>
+        </div>
         <div id="button-container">
-            <button id="build-green">增設綠能設施</button>
-            <button id="build-fossil">增設石化能源設施</button>
-            <button id="remove-fossil">拆除石化能源設施</button>
+            <button class="action-button" id="build-green">Build Green Energy Facility</button>
+            <button class="action-button" id="build-fossil">Build Fossil Energy Facility</button>
+            <button class="action-button" id="remove-fossil">Remove Fossil Energy Facility</button>
         </div>
         <p id="result"></p>
     </div>
     <footer>
-        <p>© 2024 NASA 黑客松</p>
+        <p>© 2024 NASA Hackathon Project</p>
     </footer>
     <script src="js/main.js"></script>
     <script src="js/incident.js"></script>
