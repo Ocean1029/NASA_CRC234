@@ -43,7 +43,8 @@ function mineDiscover() {
                     value: 2, 
                     visible: true
                 }
-            }
+            },
+            className: "swal-custom-class" 
         }).then((value) => {
             // 發放許可
             updateState({ mineLicense: value });
@@ -90,7 +91,8 @@ function mineIncident() {
                     value: 1,
                     visible: true
                 },
-            }
+            },
+            className: "swal-custom-class" 
         }).then((value) => {
             // 發放許可
             if(gameState.mineLicense === 2 && value === 1) value = 2;
@@ -131,7 +133,8 @@ function tribeProtest() {
                     value: 2,
                     visible: true
                 }
-            }
+            },
+            className: "swal-custom-class" 
         }).then((value) => {
             // 發放許可
             updateState({ tribeSelect: value });
