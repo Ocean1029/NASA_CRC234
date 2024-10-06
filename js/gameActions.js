@@ -10,9 +10,9 @@ export function buildGreen() {
         updateState({
             finance: gameState.finance - 15,
             support: gameState.round <= 4 ? gameState.support - 10 : gameState.support + 20,
-            green: gameState.green + gameState.greenPower,
+            green_installed_capacity: gameState.green_installed_capacity + gameState.greenPower,
         });
-        logMessage(`Built a green energy facility. Green Energy Output is now ${gameState.green} kW.`);
+        logMessage(`Built a green energy facility. Green Energy Output is now ${gameState.green_installed_capacity} kW.`);
     } else {
         logMessage("Insufficient funds to build a green energy facility!");
     }
@@ -25,10 +25,10 @@ export function buildFossil() {
         updateState({
             finance: gameState.finance - 25,
             fossilCount: gameState.fossilCount + 1,
-            fossil: gameState.fossil + 300,
+            fossil_installed_capacity: gameState.fossil_installed_capacity + 300,
             support: gameState.round <= 4 ? gameState.support - 20 : gameState.support - 40,
         });
-        logMessage(`Built a fossil energy facility. Fossil Energy Output is now ${gameState.fossil} kW. Fossil facilities: ${gameState.fossilCount}.`);
+        logMessage(`Built a fossil energy facility. Fossil Energy Output is now ${gameState.fossil_installed_capacity} kW. Fossil facilities: ${gameState.fossilCount}.`);
     } else {
         logMessage("Insufficient funds to build a fossil energy facility!", 'loss');
     }
@@ -54,9 +54,20 @@ export function removeFossil() {
 // 下一回合的操作
 function nextRound() {
     const newFinance = gameState.finance + 5 - gameState.fossilCount * gameState.fossilFee + gameState.mineIncome;
+
+    let newRandomValue = 25 + (10 * Math.random())
+
+    if (gameState.solar_data != -1) {
+        newRandomValue = gameState.solar_data[Math.floor(Math.random() * gameState.solar_data.length)]
+        newRandomValue = Math.round(newRandomValue)
+    }
+
+    console.log(gameState.solar_data)
+
     updateState({
         finance: newFinance,
         round: gameState.round + 1,
+        randomValue: newRandomValue,
     });
 
     if (checkLoseCondition()) {
@@ -73,10 +84,10 @@ function nextRound() {
 
 // 檢查勝利條件
 function checkWinCondition() {
-    return gameState.finance >= 0 && gameState.green >= 1700 && (gameState.green + gameState.fossil) >= 4000 && gameState.support > 0;
+    return gameState.finance >= 0 && gameState.green_electricity_production >= 1700 && (gameState.green_electricity_production + gameState.fossil_electricity_production) >= 4000 && gameState.support > 0;
 }
 
 // 檢查失敗條件
 function checkLoseCondition() {
-    return gameState.finance < -20 || (gameState.green + gameState.fossil) < 4000 * 0.7 || gameState.support <= 0;
+    return gameState.finance < -20 || (gameState.green_electricity_production + gameState.fossil_electricity_production) < 4000 * 0.7 || gameState.support <= 0;
 }
