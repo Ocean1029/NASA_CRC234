@@ -16,12 +16,12 @@ const fossilCountElement = document.getElementById('fossil-count');
 // 更新 UI 資訊的函式
 export function updateInfo() {
     roundElement.textContent = gameState.round;
-    financeElement.textContent = gameState.finance;
-    greenElement.textContent = gameState.green_installed_capacity;
-    fossilElement.textContent = gameState.fossil_installed_capacity;
-    greenProductionElement.textContent = Math.round((gameState.green_installed_capacity / 0.2 * gameState.randomValue) / 1000);
-    fossilProductionElement.textContent = Math.round((gameState.fossil_installed_capacity * 8760 * 0.9) / 1000);
-    elecSumElement.textContent = Math.round((gameState.green_installed_capacity / 0.2 * gameState.randomValue + gameState.fossil_installed_capacity * 8760 * 0.9) / 1000);
-    supportElement.textContent = `${gameState.support}%`;
-    fossilCountElement.textContent = gameState.fossilCount;
+    financeElement.textContent = gameState.finance.toLocaleString();
+    greenElement.textContent = gameState.green_installed_capacity.toLocaleString();
+    fossilElement.textContent = gameState.fossil_installed_capacity.toLocaleString();
+    greenProductionElement.textContent = Math.round((gameState.green_installed_capacity / 0.2 * gameState.randomValue) / 1000).toLocaleString();
+    fossilProductionElement.textContent = Math.round((gameState.fossil_installed_capacity * 8760 * 0.9) / 1000).toLocaleString();
+    elecSumElement.textContent = Math.round((gameState.green_installed_capacity / 0.2 * gameState.randomValue + gameState.fossil_installed_capacity * 8760 * 0.9) / 1000).toLocaleString();
+    supportElement.textContent = `${gameState.support.toLocaleString()}%`;
+    fossilCountElement.textContent = gameState.fossilCount.toLocaleString();
 }

@@ -51,6 +51,24 @@ export function removeFossil() {
     nextRound();
 }
 
+// 解釋規則
+export function ruleExplain() {
+    swal({
+        title: "How to Play?",
+        icon: "info",
+        text: "\
+1. Start: You begin with a $100, a mix of fossil fuel and green energy production, and a neutral social support point.\n\
+2. Choose Actions: In each round, you would have $5 of tax income, and you can choose one of three actions:\n\
+    - Build Green Energy Facility: +200kW of green energy capacity, -$15 of finance.\n\
+    - Build Fossil Energy Facility: +300kW of green energy capacity, -$25 of finance, and causing harm to social support\n\
+    - Remove Fossil Energy Facility: -300kW of green energy capacity, +$10 of finance, and gain social support.\n\
+3. Incidents: Beware of the news! there might be factors that relevent to the game.\n\
+4. Electricity Capacity: Beware that this is different from actual electricity production.",
+        buttons: true,
+        className: "swal-custom-class" 
+    });
+}
+
 // 下一回合的操作
 function nextRound() {
     const newFinance = gameState.finance + 5 - gameState.fossilCount * gameState.fossilFee + gameState.mineIncome;

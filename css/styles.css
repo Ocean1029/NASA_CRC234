@@ -85,6 +85,7 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
+
 /* 按鈕 hover 和 active 狀態樣式 */
 .action-button:hover {
     background-color: #3A5A40; /* 深綠色 hover */
@@ -93,6 +94,7 @@ h1 {
 .action-button:active {
     background-color: #344E41; /* 更深的綠色 active */
 }
+
 
 /* 右側遊戲控制台樣式 */
 #game-console {
